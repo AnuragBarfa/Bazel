@@ -1,0 +1,23 @@
+// Run from cm "protoc --proto_path=proto proto/*.proto --go-grpc_out=." to generate go client manually.
+syntax = "proto3";
+
+package firstservice;
+option go_package = ".";
+message Message {
+  string body = 1;
+}
+
+// The request message containing the user's name.
+message HelloRequest {
+  string name = 1;
+}
+
+// The response message containing the greetings
+message HelloReply {
+  string message = 1;
+}
+
+service FirstService {
+  rpc SayHello(Message) returns (Message) {}
+  rpc SayHelloAgain (HelloRequest) returns (HelloReply) {}
+}
